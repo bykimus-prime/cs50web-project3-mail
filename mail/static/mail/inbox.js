@@ -39,5 +39,26 @@ function load_mailbox(mailbox) {
 function send_email(event) {
    // prevent from loading too fast and not running the console.log
    event.preventDefault();
-   console.log('hello');
+   
+   // store fields
+   const recipients = document.querySelector('#compose-recipients').value;
+   const subject = document.querySelector('#compose-subject').value;
+   const body = document.querySelector('#compose-body').value;
+
+   // send data to backend
+   fetch('/emails', {
+      method: 'POST',
+      body: JSON.stringify({
+         recipients: recipients,
+         subject: subject,
+         body: body
+      })
+   })
+      .then(response => response.json())
+      .then(result => {
+         // Print result
+         console.log(result);
+         load_mailbox('sent');
+      });
 }
+
