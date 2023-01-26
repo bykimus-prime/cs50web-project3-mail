@@ -4,4 +4,5 @@ The goal of this project is to create a single-page app in the form of an email 
 
 The django web framework is used for this app, and I am most focused on using HTML and especially JavaScript to finish this project. I also make use of an API to handle the email system.
 
+Styling is from Bootstrap CSS framework.
 Distribution code provided by Harvard's CS50 Web course.
