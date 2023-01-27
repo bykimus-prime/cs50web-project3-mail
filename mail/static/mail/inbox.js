@@ -57,6 +57,15 @@ function view_email(id) {
                })
             })
          }
+
+         // archive and unarchive
+         const archiveBtn = document.createElement('button');
+         archiveBtn.innerHTML = email.archived ? "Unarchive" : "Archive";
+         archiveBtn.className = email['archived'] ? "btn btn-warning" : "btn btn-info";
+         archiveBtn.addEventListener('click', function() {
+            console.log('this button has been clicked')
+         });
+         document.querySelector('#email-detail-view').append(archiveBtn);
       });
 }
 
