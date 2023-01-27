@@ -27,7 +27,21 @@ function compose_email() {
 }
 
 function view_email(id) {
-   console.log(id)
+   fetch(`/emails/${id}`)
+      .then(response => response.json())
+      .then(email => {
+         // Print email
+         console.log(email);
+
+         document.querySelector('#emails-view').style.display = 'none';
+         document.querySelector('#compose-view').style.display = 'none';
+         document.querySelector('#email-detail-view').style.display = 'block';
+
+         document.querySelector('#email-detail-view').innerHTML = `
+         Hello
+         `
+      });
+
 }
 
 function load_mailbox(mailbox) {
