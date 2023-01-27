@@ -43,15 +43,24 @@ function load_mailbox(mailbox) {
          emails.forEach(singleEmail => {
             // create div for each email
             const newEmail = document.createElement('div');
+            newEmail.className = "list-group-item";
             newEmail.innerHTML = `
                <h5>Sender: ${singleEmail.sender}</h5>
                <h4>Subject: ${singleEmail.subject}</h4>
                <p>${singleEmail.timestamp}</p>
+               <p>${singleEmail.read}</p>
             `;
+            // change background color if email is read or not
+            // if statement format: if singleEmail.read is true (?) then change class to read, else (:) change to unread style
+            newEmail.className = singleEmail['read'] ? 'read': 'unread';
+            // Add click event to view email
             newEmail.addEventListener('click', function () {
                console.log('This element has been clicked!')
             });
             document.querySelector('#emails-view').append(newEmail);
+            // doesn't work in firefox with css, so had to do this? because of bootstrap and initial distribution?
+            document.querySelector('.read').style.backgroundColor = 'lightgreen';
+            document.querySelector('.unread').style.backgroundColor = 'lightblue';
          })
       });
 }
