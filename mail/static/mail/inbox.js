@@ -47,8 +47,17 @@ function view_email(id) {
             <li class="list-group-item">${email.body}</li>
          </ul>
          `
-      });
 
+         // change email to read
+         if(!email.read) {
+            fetch(`/emails/${id}`, {
+               method: 'PUT',
+               body: JSON.stringify({
+                  read: true
+               })
+            })
+         }
+      });
 }
 
 function load_mailbox(mailbox) {
@@ -74,7 +83,6 @@ function load_mailbox(mailbox) {
                <h5>Sender: ${singleEmail.sender}</h5>
                <h4>Subject: ${singleEmail.subject}</h4>
                <p>${singleEmail.timestamp}</p>
-               <p>${singleEmail.read}</p>
             `;
             // change background color if email is read or not
             // if statement format: if singleEmail.read is true (?) then change class to read, else (:) change to unread style
