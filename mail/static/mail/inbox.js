@@ -26,6 +26,10 @@ function compose_email() {
    document.querySelector('#compose-body').value = '';
 }
 
+function view_email(id) {
+   console.log(id)
+}
+
 function load_mailbox(mailbox) {
 
    // Show the mailbox and hide other views
@@ -53,14 +57,17 @@ function load_mailbox(mailbox) {
             // change background color if email is read or not
             // if statement format: if singleEmail.read is true (?) then change class to read, else (:) change to unread style
             newEmail.className = singleEmail['read'] ? 'read': 'unread';
+
             // Add click event to view email
-            newEmail.addEventListener('click', function () {
-               console.log('This element has been clicked!')
+            newEmail.addEventListener('click', function() {
+               view_email(singleEmail.id)
             });
+
             document.querySelector('#emails-view').append(newEmail);
+
             // doesn't work in firefox with css, so had to do this? because of bootstrap and initial distribution?
-            document.querySelector('.read').style.backgroundColor = 'lightgreen';
-            document.querySelector('.unread').style.backgroundColor = 'lightblue';
+            // document.querySelector('.read').style.backgroundColor = 'lightgreen';
+            // document.querySelector('.unread').style.backgroundColor = 'lightblue';
          })
       });
 }
@@ -90,4 +97,3 @@ function send_email(event) {
          load_mailbox('sent');
       });
 }
-
