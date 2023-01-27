@@ -73,6 +73,15 @@ function view_email(id) {
             .then(() => { load_mailbox('archive')})
          });
          document.querySelector('#email-detail-view').append(archiveBtn);
+
+         // reply
+         const replyBtn = document.createElement('button');
+         replyBtn.innerHTML = "Reply";
+         replyBtn.className = "btn btn-success";
+         replyBtn.addEventListener('click', function () {
+            console.log('you replied to email');
+         });
+         document.querySelector('#email-detail-view').append(replyBtn);
       });
 }
 
