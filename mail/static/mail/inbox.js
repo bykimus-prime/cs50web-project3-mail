@@ -32,7 +32,6 @@ function view_email(id) {
       .then(response => response.json())
       .then(email => {
          // Print email
-         console.log(email);
 
          document.querySelector('#emails-view').style.display = 'none';
          document.querySelector('#compose-view').style.display = 'none';
@@ -63,7 +62,15 @@ function view_email(id) {
          archiveBtn.innerHTML = email.archived ? "Unarchive" : "Archive";
          archiveBtn.className = email['archived'] ? "btn btn-warning" : "btn btn-info";
          archiveBtn.addEventListener('click', function() {
-            console.log('this button has been clicked')
+            fetch(`/emails/${email.id}`, {
+               method: 'PUT',
+               body: JSON.stringify({
+                  // make archived value opposite of current value
+                  archived: !email.archived
+               })
+            })
+            // redirect after archive to archive view
+            .then(() => { load_mailbox('archive')})
          });
          document.querySelector('#email-detail-view').append(archiveBtn);
       });
